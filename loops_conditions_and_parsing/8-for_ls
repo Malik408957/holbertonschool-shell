@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script lists non-hidden files and prints part after first dash using for loop
+
+for file in *; do
+    # Skip directories and hidden files
+    if [ -f "$file" ]; then
+        # Remove everything up to and including the first dash
+        name="${file#*-}"
+        # If there was no dash, keep the original name
+        if [ "$name" = "$file" ]; then
+            echo "$file"
+        else
+            echo "$name"
+        fi
+    fi
+done
