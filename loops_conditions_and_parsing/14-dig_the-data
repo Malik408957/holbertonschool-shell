@@ -1,4 +1,4 @@
-#!/bin/bash
-# Bu skript Apache log faylını təhlil edir və statistikaları çıxarır
+#!/usr/bin/env bash
+# This script analyzes Apache log files and extracts visitor statistics
 
 awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -nr
