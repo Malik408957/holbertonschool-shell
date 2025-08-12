@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Displays a list of currently running processes with hierarchy
+# Displays processes in exact ps auxf format with hierarchy
 
-ps ax -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd --forest
+ps aux --forest
