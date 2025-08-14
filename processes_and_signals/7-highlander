@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# SIGTERM siqnalı alanda "I am invincible!!!" mesajını göstərən funksiya
+# Displays a message and handles SIGTERM signal
 invincible() {
     echo "I am invincible!!!"
 }
