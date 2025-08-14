@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# 7-highlander prosesini tapıb öldürən skript
+pkill -f "./7-highlander"
