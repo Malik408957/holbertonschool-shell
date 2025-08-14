@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # SIGTERM siqnalı alanda "I am invincible!!!" mesajını göstərən funksiya
 invincible() {
