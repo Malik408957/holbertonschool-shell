@@ -2,7 +2,7 @@
 # Creates PID file and handles various signals
 
 # PID file path
-PID_FILE="/var/run/myscript.pid"
+PID_FILE="/tmp/myscript.pid"
 
 # Write own PID to file
 echo $$ > "$PID_FILE"
