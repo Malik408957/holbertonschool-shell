@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define paths
 PID_FILE="/var/run/my_process.pid"
