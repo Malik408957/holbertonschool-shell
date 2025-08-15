@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Manages the background process (start, stop, restart)
+
 # Define paths
 PID_FILE="/var/run/my_process.pid"
 SCRIPT="./manage_my_process"
@@ -9,30 +10,38 @@ mkdir -p /var/run
 chmod 777 /var/run
 
 case "$1" in
-    start)
+    "start")
         # Stop any existing process first
         if [ -f "$PID_FILE" ]; then
             kill -9 "$(cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
         fi
-
+        
         # Start the process and save PID to file
-        $SCRIPT &
+        "$SCRIPT" &
         echo $! > "$PID_FILE"
         chmod 644 "$PID_FILE"
         echo "manage_my_process started"
         ;;
-    stop)
+    "stop")
         # Stop the process and remove PID file
         if [ -f "$PID_FILE" ]; then
             kill -9 "$(cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
-            echo "manage_my_process stopped"
-        else
-            echo "No process running"
         fi
+        echo "manage_my_process stopped"
         ;;
-    restart)
+    "restart")
         # Stop then start
-        $0 stop
+        "$0" stop
         sleep 1
+        "$0" start
+        ;;
+    *)
+        # Invalid argument
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
