@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Define paths
+PID_FILE="/var/run/my_process.pid"
+SCRIPT="./manage_my_process"
+
+case "$1" in
+    start)
+        # Start the process and save PID to file
+        $SCRIPT &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process started"
+        ;;
+    stop)
+        # Stop the process and remove PID file
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat "$PID_FILE")"
+            rm "$PID_FILE"
+        fi
+        echo "manage_my_process stopped"
+        ;;
+    restart)
+        # Stop then start
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat "$PID_FILE")"
+            rm "$PID_FILE"
+        fi
+        $SCRIPT &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        # Invalid argument
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
