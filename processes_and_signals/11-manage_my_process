@@ -5,10 +5,6 @@
 PID_FILE="/var/run/my_process.pid"
 SCRIPT="./manage_my_process"
 
-# Ensure /var/run directory exists and is writable
-mkdir -p /var/run
-chmod 777 /var/run
-
 case "$1" in
     "start")
         # Stop any existing process first
@@ -20,7 +16,6 @@ case "$1" in
         # Start the process and save PID to file
         "$SCRIPT" &
         echo $! > "$PID_FILE"
-        chmod 644 "$PID_FILE"
         echo "manage_my_process started"
         ;;
     "stop")
@@ -41,12 +36,11 @@ case "$1" in
         # Start the process and save PID to file
         "$SCRIPT" &
         echo $! > "$PID_FILE"
-        chmod 644 "$PID_FILE"
         echo "manage_my_process restarted"
         ;;
     *)
         # Invalid argument
-        echo "Usage: $0 {start|stop|restart}"
+        echo "Usage: manage_my_process {start|stop|restart}" >&2
         exit 1
         ;;
 esac
