@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# Manages the background process (start, stop, restart)
 # Define paths
 PID_FILE="/var/run/my_process.pid"
 SCRIPT="./manage_my_process"
